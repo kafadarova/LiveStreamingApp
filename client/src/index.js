@@ -12,6 +12,6 @@ ReactDOM.render(
   // gets a store as prop
   <Provider store={store}>
     <App />
-  </Provider> ,
+  </Provider>,
   document.querySelector('#root')
 );
