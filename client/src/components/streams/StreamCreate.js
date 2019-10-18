@@ -3,14 +3,21 @@ import { Field, reduxForm } from 'redux-form'
 
 class StreamCreate extends React.Component {
   renderInput(formProps) {
-    return <input {...formProps.input} /> // take all key-value pairs and add them as prop to the input element
+    // console.log(formProps);
+    return (
+      <div className="field">
+        <label>{formProps.label}</label>
+      {/* take all key-value pairs and add them as prop to the input element*/}
+        <input {...formProps.input} />
+      </div>
+    )
   }
 
   render() {
     return (
-      <form>
-        <Field name="title" component={this.renderInput} />
-        <Field name="description" component={this.renderInput} />
+      <form className="ui form">
+        <Field name="title" component={this.renderInput} label="Enter Title"/>
+        <Field name="description" component={this.renderInput} label="Enter Description"/>
       </form>
     )
   }
