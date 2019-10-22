@@ -2,13 +2,25 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form'
 
 class StreamCreate extends React.Component {
-  renderInput(formProps) {
-    // console.log(formProps);
+  renderError(meta) {
+    if (meta.touched && meta.error) {
+      return (
+        <div className="ui error message">
+          <div className="header">{meta.error}</div>
+        </div>
+      )
+    }
+  }
+
+  renderInput = (formProps) => {
+    // console.log(formProps.meta);
+    const className = `field ${formProps.meta.error && formProps.meta.touched ? 'error' : ''}`;
     return (
-      <div className="field">
+      <div className={className}>
         <label>{formProps.label}</label>
       {/* take all key-value pairs and add them as prop to the input element*/}
-        <input {...formProps.input} />
+        <input {...formProps.input} autoComplete="off" />
+        {this.renderError(formProps.meta)}
       </div>
     )
   }
@@ -20,7 +32,7 @@ class StreamCreate extends React.Component {
   render() {
     // console.log(this.props);
     return (
-      <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">
+      <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form error">
         <Field name="title" component={this.renderInput} label="Enter Title"/>
         <Field name="description" component={this.renderInput} label="Enter Description"/>
         <button className="ui button primary">Submit</button>
@@ -42,5 +54,6 @@ const validate = (formValues) => {
 }
 
 export default reduxForm({
-  form: 'streamCreate'
+  form: 'streamCreate',
+  validate: validate
 })(StreamCreate);
