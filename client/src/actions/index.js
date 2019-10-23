@@ -17,7 +17,7 @@ export const signOut = () => {
 };
 
 // action create a stream on form submit
-export const createStream = formValues => async dispatch => {
  // post request to streams endpoint
+export const createStream = formValues => async dispatch => {
  streams.post('/streams', formValues);
 }
