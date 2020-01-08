@@ -66,6 +66,7 @@ const validate = formValues => {
   return errors;
 };
 
+// exporting streamform component which is wrapped by reduxform
 export default reduxForm({
   form: "streamForm",
   validate: validate
