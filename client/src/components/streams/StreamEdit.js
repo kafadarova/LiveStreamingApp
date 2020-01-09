@@ -29,11 +29,11 @@ class StreamEdit extends React.Component {
 }
 
 // ownProps = the props of StreamEdit (what we got from Route Component)
-const mapStateToProp = (state, ownProps) => {
+const mapStateToProps = (state, ownProps) => {
   return { stream: state.streams[ownProps.match.params.id] };
 };
 
 export default connect(
-  mapStateToProp,
+  mapStateToProps ,
   { fetchStream, editStream }
 )(StreamEdit);

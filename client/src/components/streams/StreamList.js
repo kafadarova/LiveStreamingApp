@@ -28,7 +28,9 @@ class StreamList extends React.Component {
           {this.renderAdmin(stream)}
           <i className="large middle aligned icon camera" />
           <div className="content">
-            {stream.title}
+              <Link to={`/streams/${stream.id}`} className="header">
+                {stream.title}
+              </Link>
             <div className="content">{stream.description}</div>
           </div>
         </div>
@@ -60,7 +62,7 @@ class StreamList extends React.Component {
   }
 }
 
-const mapStateToProp = state => {
+const mapStateToProps = state => {
   // turn the object into an array and then return it as this.props.streams
   return {
     streams: Object.values(state.streams),
@@ -70,6 +72,6 @@ const mapStateToProp = state => {
 };
 
 export default connect(
-  mapStateToProp,
+  mapStateToProps,
   { fetchStreams }
 )(StreamList);
